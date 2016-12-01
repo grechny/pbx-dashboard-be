@@ -1,0 +1,14 @@
+### JetBrains template
+*.iml
+.idea/
+
+### Java template
+*.properties
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+### Maven template
+target/
