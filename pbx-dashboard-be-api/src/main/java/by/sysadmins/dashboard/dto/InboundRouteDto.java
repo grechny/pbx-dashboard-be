@@ -2,7 +2,7 @@ package by.sysadmins.dashboard.dto;
 
 import java.util.Map;
 
-public class PbxInboundRouteDto {
+public class InboundRouteDto {
 
     private String description;
     private String prefix;
@@ -55,7 +55,7 @@ public class PbxInboundRouteDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PbxInboundRouteDto that = (PbxInboundRouteDto) o;
+        InboundRouteDto that = (InboundRouteDto) o;
 
         if (description != null ? !description.equals(that.description) : that.description != null)
             return false;

@@ -1,6 +1,6 @@
 package by.sysadmins.dashboard.rest;
 //
-//import by.sysadmins.dashboard.dto.PbxInboundRouteDto;
+//import by.sysadmins.dashboard.dto.InboundRouteDto;
 //import by.sysadmins.dashboard.service.CallTrackingService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,7 +25,7 @@ package by.sysadmins.dashboard.rest;
 //    @GET
 //    @Path("/prefixes")
 //    @Produces("application/json")
-//    public List<PbxInboundRouteDto> getPrefixes() {
+//    public List<InboundRouteDto> getPrefixes() {
 //        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 //        return callTrackingService.getPrefixList(username);
 //    }

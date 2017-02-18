@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import by.sysadmins.dashboard.dto.PbxInboundRouteDto;
+import by.sysadmins.dashboard.dto.InboundRouteDto;
 
 @Service
 public class CallTrackingService {
@@ -14,11 +14,11 @@ public class CallTrackingService {
     @Autowired
     private DataSourceEmployment dataSourceEmployment;
 
-    public List<PbxInboundRouteDto> getPrefixList(String username) {
+    public List<InboundRouteDto> getPrefixList(String username) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSourceEmployment.getDateSourceByUsername(username, "asterisk"));
-        List<PbxInboundRouteDto> inboundRoutes = jdbcTemplate.query(
+        List<InboundRouteDto> inboundRoutes = jdbcTemplate.query(
                 "SELECT * FROM incoming i WHERE 1", (rs, rowNum) -> {
-                    PbxInboundRouteDto pbxInboundRoute = new PbxInboundRouteDto();
+                    InboundRouteDto pbxInboundRoute = new InboundRouteDto();
                     pbxInboundRoute.setDescription(rs.getString("description"));
                     pbxInboundRoute.setPrefix(rs.getString("grppre"));
                     String[] destination = rs.getString("destination").split(",");
