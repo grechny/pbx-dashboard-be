@@ -7,7 +7,7 @@
     <groupId>by.sysadmins</groupId>
     <artifactId>parent-pom</artifactId>
     <version>0.0.4-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>PBX Dashboard BE</name>
     <description>PBX Dashboard Project</description>
@@ -22,6 +22,7 @@
     <modules>
         <module>pbx-dashboard-be-api</module>
         <module>pbx-dashboard-be-core</module>
+        <module>pbx-dashboard-be-dao</module>
         <module>pbx-dashboard-be-impl</module>
         <module>pbx-dashboard-be-web</module>
     </modules>

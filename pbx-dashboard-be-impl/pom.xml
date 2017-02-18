@@ -10,7 +10,7 @@
         <artifactId>parent-pom</artifactId>
         <groupId>by.sysadmins</groupId>
         <version>0.0.4-SNAPSHOT</version>
-        <relativePath>pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <dependencies>
