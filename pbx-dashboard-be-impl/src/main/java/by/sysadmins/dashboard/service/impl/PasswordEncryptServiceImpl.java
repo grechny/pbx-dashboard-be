@@ -1,4 +1,4 @@
-package by.sysadmins.dashboard.utils;
+package by.sysadmins.dashboard.service.impl;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
