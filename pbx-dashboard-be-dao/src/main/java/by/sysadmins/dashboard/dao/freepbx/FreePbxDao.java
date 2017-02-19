@@ -5,9 +5,12 @@ import by.sysadmins.dashboard.dao.freepbx.connectivity.OutboundRoutesDao;
 import by.sysadmins.dashboard.dao.freepbx.connectivity.TrunksDao;
 
 public interface FreePbxDao {
-    InboundRoutesDao getInboundRoutesDao();
+    String ASTERISK_DB_NAME = "asterisk";
+    String CDR_DB_NAME = "asteriskcdrdb";
 
-    OutboundRoutesDao getOutboundRoutesDao();
+    InboundRoutesDao getInboundRoutesDao(String username);
 
-    TrunksDao getTrunksDao();
+    OutboundRoutesDao getOutboundRoutesDao(String username);
+
+    TrunksDao getTrunksDao(String username);
 }

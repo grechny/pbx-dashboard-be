@@ -1,17 +1,30 @@
 package by.sysadmins.dashboard.dao;
 
-import by.sysadmins.dashboard.dao.freepbx.FreePbxDao;
-import by.sysadmins.dashboard.dao.freepbx12.FreePbx12Dao;
-import by.sysadmins.dashboard.dao.freepbx13.FreePbx13Dao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+import by.sysadmins.dashboard.dao.freepbx.FreePbxDao;
+
+@Component
 public class FreePbxDaoFactory {
 
-    public static FreePbxDao getDaoFactory(FreePBX version) {
+    private final FreePbxDao freePbx12Dao;
+    private final FreePbxDao freePbx13Dao;
+
+    @Autowired
+    public FreePbxDaoFactory(@Qualifier(value = "freePbx12Dao") FreePbxDao freePbx13Dao,
+                             @Qualifier(value = "freePbx13Dao") FreePbxDao freePbx12Dao) {
+        this.freePbx13Dao = freePbx13Dao;
+        this.freePbx12Dao = freePbx12Dao;
+    }
+
+    public FreePbxDao getDaoFactory(FreePBX version) {
         switch (version) {
             case V12:
-                return new FreePbx12Dao();
+                return freePbx12Dao;
             case V13:
-                return new FreePbx13Dao();
+                return freePbx13Dao;
             default:
                 throw new UnsupportedOperationException("This version of FreePBX does not supported yet");
         }

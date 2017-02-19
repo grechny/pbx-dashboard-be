@@ -1,28 +1,28 @@
 package by.sysadmins.dashboard.dao.freepbx12.connectivity;
 
-import java.util.List;
+import org.apache.tomcat.jdbc.pool.DataSource;
 
 import by.sysadmins.dashboard.dao.freepbx.connectivity.InboundRoutesDao;
+import by.sysadmins.dashboard.dto.InboundRouteDto;
 
 public class FreePbx12InboundRoutesDao extends InboundRoutesDao {
+
+    public FreePbx12InboundRoutesDao(DataSource dataSource) {
+        super(dataSource);
+    }
+
     @Override
-    public void create(InboundRoutesDao entity) {
+    public void create(InboundRouteDto entity) {
         //todo implement method
     }
 
     @Override
-    public void update(InboundRoutesDao entity) {
+    public void update(InboundRouteDto entity) {
         //todo implement method
     }
 
     @Override
-    public List<InboundRoutesDao> findAll() {
-        //todo implement method
-        return null;
-    }
-
-    @Override
-    public void delete(InboundRoutesDao entity) {
+    public void delete(InboundRouteDto entity) {
         //todo implement method
     }
 }
