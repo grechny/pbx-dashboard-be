@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -14,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import by.sysadmins.dashboard.dto.UserProfileDto;
+import by.sysadmins.dashboard.services.PasswordEncryptService;
 import by.sysadmins.dashboard.services.UserProfileService;
 
 
@@ -26,10 +29,13 @@ import by.sysadmins.dashboard.services.UserProfileService;
 public class UserActionsController {
 
     private final UserProfileService userProfileService;
+    private final PasswordEncryptService encryptService;
 
     @Autowired
-    public UserActionsController(UserProfileService userProfileService) {
+    public UserActionsController(UserProfileService userProfileService,
+                                 PasswordEncryptService encryptService) {
         this.userProfileService = userProfileService;
+        this.encryptService = encryptService;
     }
 
     @GET
@@ -66,15 +72,15 @@ public class UserActionsController {
         userProfileService.deleteUserProfile(username);
     }
 
-//    @POST
-//    @Path("/password")
-//    @Consumes("application/json")
-//    @Produces("application/json")
-//    public Map getEncryptPassword(Map<String, String> map) {
-//        for (Map.Entry<String, String> iMap : map.entrySet()) {
-//            String hashedPassword = encryptService.encryptPassword(iMap.getValue());
-//            map.put(iMap.getKey(), hashedPassword);
-//        }
-//        return map;
-//    }
+    @POST
+    @Path("/password")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Map getEncryptPassword(Map<String, String> map) {
+        for (Map.Entry<String, String> iMap : map.entrySet()) {
+            String hashedPassword = encryptService.encryptPassword(iMap.getValue());
+            map.put(iMap.getKey(), hashedPassword);
+        }
+        return map;
+    }
 }
