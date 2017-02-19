@@ -30,7 +30,7 @@ public class FreePbxDaoFactory {
         }
     }
 
-    public enum FreePBX{
+    public enum FreePBX {
         V12, V13
     }
 

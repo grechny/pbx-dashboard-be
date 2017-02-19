@@ -17,7 +17,7 @@ public class RestLogoutHandler implements LogoutHandler {
         response.addHeader("Access-Control-Allow-Headers", "accept, content-type, x-requested-with");
         response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
 
-        if (authentication == null){
+        if (authentication == null) {
             response.setStatus(401);
         }
 

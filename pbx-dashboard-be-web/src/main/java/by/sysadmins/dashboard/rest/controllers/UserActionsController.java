@@ -60,7 +60,7 @@ public class UserActionsController {
     @Produces("application/json")
     public UserProfileDto updateUserProfile(UserProfileDto userProfileDto,
                                             @PathParam("username") String username) {
-        if (!username.equals(userProfileDto.getUsername())){
+        if (!username.equals(userProfileDto.getUsername())) {
             throw new IllegalArgumentException("Username cannot be changed");
         }
         return userProfileService.updateUserProfile(userProfileDto);

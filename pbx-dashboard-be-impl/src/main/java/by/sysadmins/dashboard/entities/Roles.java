@@ -1,8 +1,16 @@
 package by.sysadmins.dashboard.entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
@@ -16,7 +24,7 @@ public class Roles implements Serializable {
     @Column(name = "role")
     private String role;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, targetEntity = UserRoles.class, mappedBy = "roles")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = UserRoles.class, mappedBy = "roles")
     private List<UserRoles> userRoles;
 
     public Integer getIdRole() {

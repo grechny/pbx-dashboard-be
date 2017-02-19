@@ -1,12 +1,22 @@
 package by.sysadmins.dashboard.entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 @Entity
 @Table(name = "users")
-public class Users implements Serializable{
+public class Users implements Serializable {
 
     @Id
     @GeneratedValue
@@ -26,7 +36,7 @@ public class Users implements Serializable{
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, targetEntity = UserRoles.class, mappedBy = "users")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = UserRoles.class, mappedBy = "users")
     private List<UserRoles> userRoles;
 
     public Integer getIdUser() {

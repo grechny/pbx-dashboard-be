@@ -38,18 +38,20 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public UserProfileDto createUserProfile(UserProfileDto userProfileDto) {
+        //todo implement method
         return null;
     }
 
     @Override
     public UserProfileDto updateUserProfile(UserProfileDto userProfileDto) {
+        //todo implement method
         return null;
     }
 
     @Override
     public void deleteUserProfile(String username) {
         Users user = usersRepository.findByUsername(username);
-        if (user != null){
+        if (user != null) {
             usersRepository.delete(user.getIdUser());
         }
 
@@ -74,6 +76,4 @@ public class UserProfileServiceImpl implements UserProfileService {
         Users user = usersRepository.findByUsername(username);
         return user.getPassword();
     }
-
-
 }

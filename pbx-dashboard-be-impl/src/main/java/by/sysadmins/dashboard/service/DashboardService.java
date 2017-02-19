@@ -1,11 +1,12 @@
 package by.sysadmins.dashboard.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import by.sysadmins.dashboard.entities.Layouts;
 import by.sysadmins.dashboard.entities.Users;
 import by.sysadmins.dashboard.entities.repositories.LayoutsRepository;
 import by.sysadmins.dashboard.entities.repositories.UsersRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class DashboardService {
@@ -15,17 +16,18 @@ public class DashboardService {
     @Autowired
     private LayoutsRepository layoutsRepository;
 
-    public String getLayout (String username) {
+    public String getLayout(String username) {
         return layoutsRepository.getLayoutByUsername(username);
     }
 
     /**
      * Creating layout string for authorized user
+     *
      * @param username Authorized user's username
-     * @param layout Layout string from FE
+     * @param layout   Layout string from FE
      * @return -1 if not saved, 0 - if layouts already exists, 1 - if OK
      */
-    public synchronized Integer createLayout (String username, String layout){
+    public synchronized Integer createLayout(String username, String layout) {
         Users user = usersRepository.findByUsername(username);
         Layouts layouts = layoutsRepository.findByUsers(user);
         if (layouts != null)
@@ -36,11 +38,12 @@ public class DashboardService {
 
     /**
      * Updating layout string
+     *
      * @param username Authorized user's username
-     * @param layout Layout string from FE
+     * @param layout   Layout string from FE
      * @return -1 if not saved, 0 - if layouts not exists, 1 - if OK
      */
-    public synchronized Integer updateLayout (String username, String layout){
+    public synchronized Integer updateLayout(String username, String layout) {
         Users user = usersRepository.findByUsername(username);
         Layouts layouts = layoutsRepository.findByUsers(user);
         if (layouts == null)

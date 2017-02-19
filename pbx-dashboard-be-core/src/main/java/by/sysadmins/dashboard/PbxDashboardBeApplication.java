@@ -8,12 +8,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @SpringBootApplication
 public class PbxDashboardBeApplication {
 
+    public static void main(String[] args) {
+        SpringApplication.run(PbxDashboardBeApplication.class, args);
+    }
+
     @Bean
     public WebSecurityConfigurerAdapter webSecurityConfigurerAdapter() {
         return new ApplicationSecurity();
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(PbxDashboardBeApplication.class, args);
     }
 }

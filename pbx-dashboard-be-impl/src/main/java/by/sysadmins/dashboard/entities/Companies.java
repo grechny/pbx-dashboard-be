@@ -3,11 +3,17 @@ package by.sysadmins.dashboard.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "companies")
-public class Companies implements Serializable{
+public class Companies implements Serializable {
 
     @Id
     @GeneratedValue
@@ -17,10 +23,10 @@ public class Companies implements Serializable{
     @Column(name = "company_name")
     private String companyName;
 
-    @OneToMany(cascade=CascadeType.ALL, targetEntity = Users.class, mappedBy = "companies")
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Users.class, mappedBy = "companies")
     private Collection users;
 
-    @OneToMany(cascade=CascadeType.ALL, targetEntity = CompanyCredentials.class, mappedBy = "companies")
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = CompanyCredentials.class, mappedBy = "companies")
     private Collection companyCredentials;
 
     public Integer getIdCompany() {

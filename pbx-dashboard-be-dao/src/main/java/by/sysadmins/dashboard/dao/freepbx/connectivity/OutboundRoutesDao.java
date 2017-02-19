@@ -4,7 +4,7 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 
 import by.sysadmins.dashboard.dao.GenericDaoOperations;
 
-public abstract class OutboundRoutesDao implements GenericDaoOperations{
+public abstract class OutboundRoutesDao implements GenericDaoOperations {
 
     protected DataSource dataSource;
 

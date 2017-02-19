@@ -3,8 +3,8 @@ package by.sysadmins.dashboard.rest.config;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
-import by.sysadmins.dashboard.rest.filters.CorsResponseFilter;
 import by.sysadmins.dashboard.rest.controllers.UserActionsController;
+import by.sysadmins.dashboard.rest.filters.CorsResponseFilter;
 
 /**
  * Created by grechny on 07.01.2016.

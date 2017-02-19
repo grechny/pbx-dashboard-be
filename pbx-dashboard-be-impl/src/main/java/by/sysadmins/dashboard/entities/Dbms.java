@@ -1,12 +1,19 @@
 package by.sysadmins.dashboard.entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 @Entity
 @Table(name = "dbms")
-public class Dbms implements Serializable{
+public class Dbms implements Serializable {
 
     @Id
     @GeneratedValue
@@ -16,7 +23,7 @@ public class Dbms implements Serializable{
     @Column(name = "dbms")
     private String dbms;
 
-    @OneToMany(cascade=CascadeType.ALL, targetEntity = CompanyCredentials.class, mappedBy = "dbms")
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = CompanyCredentials.class, mappedBy = "dbms")
     private Collection companyCredentials;
 
     public Integer getIdDbms() {
