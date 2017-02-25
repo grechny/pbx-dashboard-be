@@ -17,12 +17,12 @@ public class CompanyCredentials implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_company_credential")
-    private Integer idCompanyCredential;
+    @Column(name = "id_company_credentials")
+    private Integer idCompanyCredentials;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_company")
-    private Companies companies;
+    private Company company;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_dbms")
@@ -43,20 +43,20 @@ public class CompanyCredentials implements Serializable {
     @Column(name = "db_password")
     private String dbPassword;
 
-    public Integer getIdCompanyCredential() {
-        return idCompanyCredential;
+    public Integer getIdCompanyCredentials() {
+        return idCompanyCredentials;
     }
 
-    public void setIdCompanyCredential(Integer idCompanyCredential) {
-        this.idCompanyCredential = idCompanyCredential;
+    public void setIdCompanyCredentials(Integer idCompanyCredentials) {
+        this.idCompanyCredentials = idCompanyCredentials;
     }
 
-    public Companies getCompanies() {
-        return companies;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanies(Companies companies) {
-        this.companies = companies;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Dbms getDbms() {
@@ -114,8 +114,8 @@ public class CompanyCredentials implements Serializable {
 
         CompanyCredentials that = (CompanyCredentials) o;
 
-        if (!idCompanyCredential.equals(that.idCompanyCredential)) return false;
-        if (!companies.equals(that.companies)) return false;
+        if (!idCompanyCredentials.equals(that.idCompanyCredentials)) return false;
+        if (!company.equals(that.company)) return false;
         if (!dbms.equals(that.dbms)) return false;
         if (!dbAddress.equals(that.dbAddress)) return false;
         if (!dbPort.equals(that.dbPort)) return false;
@@ -127,8 +127,8 @@ public class CompanyCredentials implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = idCompanyCredential.hashCode();
-        result = 31 * result + companies.hashCode();
+        int result = idCompanyCredentials.hashCode();
+        result = 31 * result + company.hashCode();
         result = 31 * result + dbms.hashCode();
         result = 31 * result + dbAddress.hashCode();
         result = 31 * result + dbPort.hashCode();

@@ -8,28 +8,28 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import by.sysadmins.dashboard.entities.CompanyCredentials;
-import by.sysadmins.dashboard.entities.repositories.CompaniesRepository;
-import by.sysadmins.dashboard.entities.repositories.CompanyCredentialsRepository;
+import by.sysadmins.dashboard.dto.CompanyCredentialsDto;
+import by.sysadmins.dashboard.services.CompanyProfileService;
+import by.sysadmins.dashboard.services.UserProfileService;
 
 @Service
 public class DataSourceManager {
 
     private static Map<String, DataSource> dataSourceMap = new ConcurrentHashMap<>();
 
-    private final CompaniesRepository companiesRepository;
-    private final CompanyCredentialsRepository companyCredentialsRepository;
+    private final UserProfileService userProfileService;
+    private final CompanyProfileService companyProfileService;
 
     @Autowired
-    public DataSourceManager(CompaniesRepository companiesRepository,
-                             CompanyCredentialsRepository companyCredentialsRepository) {
-        this.companiesRepository = companiesRepository;
-        this.companyCredentialsRepository = companyCredentialsRepository;
+    public DataSourceManager(UserProfileService userProfileService,
+                             CompanyProfileService companyProfileService) {
+        this.userProfileService = userProfileService;
+        this.companyProfileService = companyProfileService;
     }
 
     public synchronized DataSource getDateSourceByUsername(String username, String dbName) {
 
-        String companyName = companiesRepository.getCompanyNameByUsername(username);
+        String companyName = userProfileService.getUserProfile(username).getCompanyName();
         DataSource dataSource = dataSourceMap.get(companyName + dbName);
         if (dataSource == null) {
             dataSource = addDataSource(companyName, dbName);
@@ -38,19 +38,18 @@ public class DataSourceManager {
     }
 
     private DataSource addDataSource(String companyName, String dbName) {
-        CompanyCredentials companyCredentials;
-        companyCredentials = companyCredentialsRepository.getByCompanies_companyNameAndDbName(companyName, dbName);
+        CompanyCredentialsDto companyCredentials = companyProfileService.getCompanyCredentials(companyName, dbName);
         String driverClassName = null, url = null;
-        switch (companyCredentials.getDbms().getDbms()) {
-            case "MySQL":
+        switch (companyCredentials.getDbms()) {
+            case MYSQL:
                 driverClassName = "com.mysql.jdbc.Driver";
                 url = "jdbc:mysql://";
                 break;
-            case "MariaDB":
+            case MARIADB:
                 driverClassName = "org.mariadb.jdbc.Driver";
                 url = "jdbc:mariadb://";
                 break;
-            case "PostgreSQL":
+            case POSTGRESQL:
                 driverClassName = "org.postgresql.Driver";
                 url = "jdbc:postgresql://";
                 break;

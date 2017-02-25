@@ -2,9 +2,7 @@ package by.sysadmins.dashboard.dao.freepbx.connectivity;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 
-import by.sysadmins.dashboard.dao.GenericDaoOperations;
-
-public abstract class TrunksDao implements GenericDaoOperations {
+public abstract class TrunksDao {
 
     protected DataSource dataSource;
 

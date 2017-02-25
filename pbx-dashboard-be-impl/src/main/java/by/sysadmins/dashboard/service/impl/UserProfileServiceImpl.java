@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import by.sysadmins.dashboard.dto.UserProfileDto;
-import by.sysadmins.dashboard.entities.Roles;
-import by.sysadmins.dashboard.entities.UserRoles;
-import by.sysadmins.dashboard.entities.Users;
+import by.sysadmins.dashboard.entities.Role;
+import by.sysadmins.dashboard.entities.User;
+import by.sysadmins.dashboard.entities.UserRole;
 import by.sysadmins.dashboard.entities.repositories.UsersRepository;
 import by.sysadmins.dashboard.services.UserProfileService;
 
@@ -26,12 +26,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public UserProfileDto getUserProfile(String username) {
-        Users user = usersRepository.findByUsername(username);
+        User user = usersRepository.findByUsername(username);
 
         UserProfileDto userProfileDto = new UserProfileDto();
         userProfileDto.setUsername(user.getUsername());
         userProfileDto.setEnabled(user.getEnabled());
-        userProfileDto.setCompanyName(user.getCompanies().getCompanyName());
+        userProfileDto.setCompanyName(user.getCompany().getCompanyName());
 
         return userProfileDto;
     }
@@ -50,7 +50,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public void deleteUserProfile(String username) {
-        Users user = usersRepository.findByUsername(username);
+        User user = usersRepository.findByUsername(username);
         if (user != null) {
             usersRepository.delete(user.getIdUser());
         }
@@ -59,12 +59,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public List<String> getUserRoles(String username) {
-        Users user = usersRepository.findByUsername(username);
+        User user = usersRepository.findByUsername(username);
 
-        List<UserRoles> userRolesList = user.getUserRoles();
-        List<Roles> roles = userRolesList.stream().map(UserRoles::getRoles).collect(Collectors.toList());
+        List<UserRole> userRoleList = user.getUserRoles();
+        List<Role> roles = userRoleList.stream().map(UserRole::getRole).collect(Collectors.toList());
         List<String> userRoles = new ArrayList<>();
-        for (Roles role : roles) {
+        for (Role role : roles) {
             userRoles.add(role.getRole());
         }
 
@@ -73,7 +73,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     @Override
     public String getHashedUserPassword(String username) {
-        Users user = usersRepository.findByUsername(username);
+        User user = usersRepository.findByUsername(username);
         return user.getPassword();
     }
 }

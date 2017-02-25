@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_roles")
-public class UserRoles implements Serializable {
+public class UserRole implements Serializable {
 
     @Id
     @GeneratedValue
@@ -22,11 +22,11 @@ public class UserRoles implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
-    private Users users;
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_role")
-    private Roles roles;
+    private Role role;
 
     public Integer getIdUserRole() {
         return idUserRole;
@@ -36,20 +36,20 @@ public class UserRoles implements Serializable {
         this.idUserRole = idUserRole;
     }
 
-    public Users getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Roles getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Roles roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
@@ -57,11 +57,11 @@ public class UserRoles implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserRoles userRoles = (UserRoles) o;
+        UserRole userRole = (UserRole) o;
 
-        if (!idUserRole.equals(userRoles.idUserRole)) return false;
-        if (!users.equals(userRoles.users)) return false;
-        if (!roles.equals(userRoles.roles)) return false;
+        if (!idUserRole.equals(userRole.idUserRole)) return false;
+        if (!user.equals(userRole.user)) return false;
+        if (!role.equals(userRole.role)) return false;
 
         return true;
     }
@@ -69,8 +69,8 @@ public class UserRoles implements Serializable {
     @Override
     public int hashCode() {
         int result = idUserRole.hashCode();
-        result = 31 * result + users.hashCode();
-        result = 31 * result + roles.hashCode();
+        result = 31 * result + user.hashCode();
+        result = 31 * result + role.hashCode();
         return result;
     }
 }

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
-public class Roles implements Serializable {
+public class Role implements Serializable {
 
     @Id
     @GeneratedValue
@@ -24,8 +24,8 @@ public class Roles implements Serializable {
     @Column(name = "role")
     private String role;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = UserRoles.class, mappedBy = "roles")
-    private List<UserRoles> userRoles;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = UserRole.class, mappedBy = "role")
+    private List<UserRole> userRoles;
 
     public Integer getIdRole() {
         return idRole;
@@ -43,11 +43,11 @@ public class Roles implements Serializable {
         this.role = role;
     }
 
-    public List<UserRoles> getUserRoles() {
+    public List<UserRole> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRoles> userRoles) {
+    public void setUserRoles(List<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 
@@ -56,10 +56,10 @@ public class Roles implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Roles roles = (Roles) o;
+        Role role = (Role) o;
 
-        if (!idRole.equals(roles.idRole)) return false;
-        return role.equals(roles.role);
+        if (!idRole.equals(role.idRole)) return false;
+        return this.role.equals(role.role);
 
     }
 

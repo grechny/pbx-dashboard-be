@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "layouts")
-public class Layouts implements Serializable {
+public class Layout implements Serializable {
 
     @Id
     @GeneratedValue
@@ -22,16 +22,16 @@ public class Layouts implements Serializable {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
-    private Users users;
+    private User user;
 
     @Column(name = "layout")
     private String layout;
 
-    public Layouts() {
+    public Layout() {
     }
 
-    public Layouts(Users user, String layout) {
-        setUsers(user);
+    public Layout(User user, String layout) {
+        setUser(user);
         setLayout(layout);
     }
 
@@ -43,12 +43,12 @@ public class Layouts implements Serializable {
         this.idLayout = idLayout;
     }
 
-    public Users getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getLayout() {
@@ -64,18 +64,18 @@ public class Layouts implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Layouts layouts = (Layouts) o;
+        Layout layout = (Layout) o;
 
-        if (!idLayout.equals(layouts.idLayout)) return false;
-        if (!users.equals(layouts.users)) return false;
-        return layout != null ? layout.equals(layouts.layout) : layouts.layout == null;
+        if (!idLayout.equals(layout.idLayout)) return false;
+        if (!user.equals(layout.user)) return false;
+        return this.layout != null ? this.layout.equals(layout.layout) : layout.layout == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = idLayout.hashCode();
-        result = 31 * result + users.hashCode();
+        result = 31 * result + user.hashCode();
         result = 31 * result + (layout != null ? layout.hashCode() : 0);
         return result;
     }

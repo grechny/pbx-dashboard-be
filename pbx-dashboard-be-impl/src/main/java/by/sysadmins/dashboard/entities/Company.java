@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "companies")
-public class Companies implements Serializable {
+public class Company implements Serializable {
 
     @Id
     @GeneratedValue
@@ -23,10 +23,13 @@ public class Companies implements Serializable {
     @Column(name = "company_name")
     private String companyName;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = Users.class, mappedBy = "companies")
+    @Column(name = "pbx_version")
+    private String pbxVersion;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = User.class, mappedBy = "company")
     private Collection users;
 
-    @OneToMany(cascade = CascadeType.ALL, targetEntity = CompanyCredentials.class, mappedBy = "companies")
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = CompanyCredentials.class, mappedBy = "company")
     private Collection companyCredentials;
 
     public Integer getIdCompany() {
@@ -43,6 +46,14 @@ public class Companies implements Serializable {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getPbxVersion() {
+        return pbxVersion;
+    }
+
+    public void setPbxVersion(String pbxVersion) {
+        this.pbxVersion = pbxVersion;
     }
 
     public Collection getUsers() {
@@ -66,10 +77,10 @@ public class Companies implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Companies companies = (Companies) o;
+        Company company = (Company) o;
 
-        if (!idCompany.equals(companies.idCompany)) return false;
-        return companyName.equals(companies.companyName);
+        if (!idCompany.equals(company.idCompany)) return false;
+        return companyName.equals(company.companyName);
 
     }
 

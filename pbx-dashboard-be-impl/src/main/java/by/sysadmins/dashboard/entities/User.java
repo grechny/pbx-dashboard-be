@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class Users implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue
@@ -31,13 +31,13 @@ public class Users implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_company")
-    private Companies companies;
+    private Company company;
 
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = UserRoles.class, mappedBy = "users")
-    private List<UserRoles> userRoles;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = UserRole.class, mappedBy = "user")
+    private List<UserRole> userRoles;
 
     public Integer getIdUser() {
         return idUser;
@@ -63,12 +63,12 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    public Companies getCompanies() {
-        return companies;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanies(Companies companies) {
-        this.companies = companies;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Boolean getEnabled() {
@@ -79,11 +79,11 @@ public class Users implements Serializable {
         this.enabled = enabled;
     }
 
-    public List<UserRoles> getUserRoles() {
+    public List<UserRole> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRoles> userRoles) {
+    public void setUserRoles(List<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
 
@@ -92,9 +92,9 @@ public class Users implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Users users = (Users) o;
+        User user = (User) o;
 
-        return username.equals(users.username);
+        return username.equals(user.username);
 
     }
 

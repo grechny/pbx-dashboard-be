@@ -6,10 +6,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.sql.ResultSet;
 import java.util.List;
 
-import by.sysadmins.dashboard.dao.GenericDaoOperations;
 import by.sysadmins.dashboard.dto.InboundRouteDto;
 
-public abstract class InboundRoutesDao implements GenericDaoOperations<InboundRouteDto> {
+public abstract class InboundRoutesDao {
 
     private final static String FIND_ALL_QUERY = "SELECT * FROM incoming";
 
@@ -19,7 +18,6 @@ public abstract class InboundRoutesDao implements GenericDaoOperations<InboundRo
         this.dataSource = dataSource;
     }
 
-    @Override
     public List<InboundRouteDto> findAll() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         List<InboundRouteDto> inboundRoutes = jdbcTemplate.query(FIND_ALL_QUERY, (ResultSet rs, int rowNum) -> {

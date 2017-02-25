@@ -5,7 +5,7 @@
     <parent>
         <artifactId>parent-pom</artifactId>
         <groupId>by.sysadmins</groupId>
-        <version>0.0.4-SNAPSHOT</version>
+        <version>0.0.5-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -15,13 +15,13 @@
     <dependencies>
         <dependency>
             <groupId>by.sysadmins</groupId>
-            <artifactId>pbx-dashboard-be-impl</artifactId>
+            <artifactId>pbx-dashboard-be-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
